@@ -1,0 +1,51 @@
+{
+  "name": "moofx",
+  "description": "A CSS3-enabled javascript animation library for node and the browser",
+  "version": "3.1.0",
+  "license": "MIT (http://mootools.net/license.txt)",
+  "main": "./index.js",
+  "keywords": [
+    "moofx",
+    "fx",
+    "animation",
+    "transition",
+    "effects"
+  ],
+  "homepage": "http://moofx.it",
+  "author": {
+    "name": "Valerio Proietti",
+    "email": "@kamicane",
+    "url": "http://mad4milk.net"
+  },
+  "bugs": {
+    "url": "https://github.com/kamicane/moofx/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/kamicane/moofx.git"
+  },
+  "dependencies": {
+    "cubic-bezier": "0.1",
+    "prime": "0.1",
+    "elements": "0.1",
+    "wrapup": "~0.10.3"
+  },
+  "sources": [
+    "./moofx.js"
+  ],
+  "devDependencies": {
+    "wrapup": "0.10"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "readme": "```\n            .-   3\n.-.-..-..-.-|-._.\n' ' '`-'`-' ' ' '\n```\n\nmoofx (3) is a css3-enabled javascript animation library\n\n## features\n\n - uses css3 transitions whenever available, falls back to normal javascript animation otherwise.\n - supports animating between different types of units, such as `em` to `px`, `px` to `%`, etc.\n - supports hsl colors for color-based properties.\n - supports transform animations in webkit browsers, firefox and ie9+.\n - includes a computedStyle normalizer.\n - framework agnostic, is easily pluggable in your favorite js framework.\n - cross browser.\n - small footprint, 6k gzipped (including dependencies).\n - simple api\n\n## API\n\nEvery property in moofx can either be provided camelized (`backgroundColor`) or hyphenated (`background-color`).\nColors can be provided as rbg (`rgb(20,30,40)`), rbga (`rbga(20,30,40,0.5)`), hsl (`hsl(20,30,40)`), hsla (`hsla(20,30,40,0.5)`) hex (`#fa0`, `#ffaa00`), or hexa (`#ffaa00ff`, `#fa0f`).\nLengths will always be retrieved in pixels, unless they have a value of `auto`, and you are able to animate *from to whatever length unit to whatever length unit*.\n\nmoofx3 can animate and has full support for the following properties: `backgroundColor`, `color`, `backgroundSize`, `fontSize`, `height`, `width`, `marginTop`, `paddingTop`, `borderTopWidth`, `top`, `borderTopColor`, `borderTopStyle`, `marginRight`, `paddingRight`, `borderRightWidth`, `right`, `borderRightColor`, `borderRightStyle`, `marginBottom`, `paddingBottom`, `borderBottomWidth`, `bottom`, `borderBottomColor`, `borderBottomStyle`, `marginLeft`, `paddingLeft`, `borderLeftWidth`, `left`, `borderLeftColor`, `borderLeftStyle`, `borderTopLeftRadius`, `borderTopRightRadius`, `borderBottomRightRadius`, `borderBottomLeftRadius`, `zIndex`, `margin`, `padding`, `borderRadius`, `borderWidth`, `borderColor`, `borderTop`, `borderRight`, `borderBottom`, `borderLeft`, `border`, `opacity`, `boxShadow`, `textShadow` and `transform`. Every other css property is handled automatically using `getComputedStyle`.\n\n### moofx\n\nthe moofx method takes as first argument either a collection of nodes (such as the return value of `document.querySelectorAll`) an array of nodes (such as the expected return value of every dom selector library available, such as [`Slick`](https://github.com/mootools/slick), or [`Sizzle`](https://github.com/jquery/sizzle)), or a single node selected by whatever means.\n\nIt is however reccomended that you use moofx as part of a javascript library's api (see below).\n\n```javascript\nmoofx(document.querySelectorAll('div.box'));\nmoofx(document.querySelector('div#box'));\nmoofx(Slick.find('div#box'));\nmoofx(Slick.search('div.box'));\nmoofx(Sizzle('div.box'));\nmoofx(document.getElementById('box'));\n```\n\n### moofx::animate\n\nThe `animate` method accepts either an object made of styles, or a property and a value, followed by the optional `options` object.\n\n```javascript\nmoofx(nodes).animate({'background-color': '#ffa', 'color': 'black'}); //animate some styles, default options\n\nmoofx(nodes).animate('background-color', '#ffa'); //animate property to value\n\nmoofx(nodes).animate({'background-color': '#ffa', 'color': 'black'}, {duration: 500}); //animate styles using options (500ms duration)\n\nmoofx(nodes).animate('background-color', '#ffa', {duration: 500}); //animate property to value using options (500ms duration)\n\nmoofx(nodes).animate({'background-color': '#ffa'}, {duration: 5000}); //5s duration\n\nmoofx(nodes).animate({'background-color': '#ffa'}, {duration: \"5000ms\", equation: 'cubic-bezier(0.17,0.67,0.83,0.67)'}); //5s duration, cubic-bezier easing equation\n\nmoofx(nodes).animate({'background-color': '#ffa'}, {duration: \"5s\", equation: 'ease-in'}); //5s duration, ease-in easing equation\n\nmoofx(nodes).animate({'background-color': '#ffa'}, {duration: \"5s\", equation: 'ease-in-out', callback: function(){ //5s duration, ease-in-out easing equation, completion callback\n\tconsole.log('animated');\n}});\n```\n\nThe options object takes as keys:\n\n - `callback`: a function to fire when the animation is done.\n - `duration`: duration of the animation as a number or string, in either milliseconds (500 or \"500ms\") or in seconds (\"500s\").\n - `equation`: a standards compliant css cubic bezier function. See [cubic-bezier](http://cubic-bezier.com/) and go crazy. Yes, this works even if the browser does not support css animations. You're welcome.\n\n### moofx::style\n\nThe `style` method accepts either an object made of styles or property and a value.\n\n```javascript\nmoofx(nodes).style({'background-color': 'red', 'color': 'black'});  //set styles\n\nmoofx(nodes).style('background-color', 'rgba(0,0,0,0)'); //set style property to value\n```\n\n### moofx::compute\n\nComputed style getter and normalizer. Note that lengths will always return in `px` (unless is `\"auto\"`) and colors in `rgba` for consistency.\n\n```javascript\nmoofx(node).compute('background-color'); //get (normalized!) computed style of node for property\n```\n\n### moofx.requestFrame / moofx.cancelFrame\n\nmoofx also provides an advanced requestAnimationFrame shim, that supports canceling and the standard time argument.\n\n```javascript\nvar callback = function(time){\n\tconsole.log(time);\n};\n\nmoofx.requestFrame(callback); //sets callback to be executed on the next animationFrame\nmoofx.cancelFrame(callback); //whopsie, better not! callback will not get executed.\n\nmoofx.requestFrame(callback); //on second thought, let's do it\nmoofx.requestFrame(callback); //three\nmoofx.requestFrame(callback); //times\n\n//and the time argument logged 3 times in your console will be the same, since the callbacks will get executed during the same animationFrame.\n```\n\n### moofx.color\n\nmoofx also exports a simple any-to-rgb color converter:\n\n```javascript\nmoofx.color('#000'); //rgb(0, 0, 0)\nmoofx.color('#0000'); //rgba(0, 0, 0, 0)\nmoofx.color('#00000000'); //rgba(0, 0, 0, 0)\n\nmoofx.color('hsl(0, 0, 0)'); //rgb(0, 0, 0)\nmoofx.color('hsla(0, 0, 0, 0)'); //rgba(0, 0, 0, 0)\n```\n\n## adapters\n\nmoofx can be used in conjuction with your favorite javascript framework. Some basic examples:\n\nMooTools integration:\n\n```javascript\nElement.implement('animate', function(){\n\tvar moo = moofx(this);\n\tmoo.animate.apply(moo, arguments);\n\treturn this;\n});\n```\n\njQuery integration:\n\n```javascript\njQuery.fn.animate = function(){\n\tvar moo = moofx(this.get());\n\tmoo.animate.apply(moo, arguments);\n\treturn this;\n};\n```\n\nThen just get busy with your dollars.\n\n## include in a browser\n\nYou can install moofx from npm:\n\n```\nnpm install moofx\n```\n\nThen run the `distribute` executable, which will generate a moofx.js file in the root of the project.\n\n```\n./distribute\n```\n\nAlternatively, you can clone moofx from github, and run `npm install` afterwards\n\n```\ngit clone https://github.com/kamicane/moofx.git\ncd moofx\nnpm install\n./distribute\n```\n\n## in node.js\n\nSurprisingly, moofx can also be run in a node.js environment.\nSimply require it after `npm install`ing it:\n\n```javascript\nvar moofx = require(\"moofx\")\n```\n\nInstead of an html element, moofx in node takes a function as an argument. This function will fire for every step of the animation.\nThen you call `start(from, to)` and `stop()`\n\n```javascript\nvar fx = moofx(function(now){\n    console.log(now)\n}, /* same options as moofx for browsers */{})/\n\nfx.start(0, 10)\nfx.stop()\n```\n\nThen get crazy and animate your command lines.\n",
+  "readmeFilename": "README.md",
+  "_id": "moofx@3.1.0",
+  "dist": {
+    "shasum": "16d9493dd041a557d2b90acf573f7d9a44ac8802"
+  },
+  "_from": "moofx@",
+  "_resolved": "https://registry.npmjs.org/moofx/-/moofx-3.1.0.tgz"
+}
