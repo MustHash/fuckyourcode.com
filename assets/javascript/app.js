@@ -58,7 +58,6 @@
             };
         };
 
-    unsetQuote();
     loadQuotes('quotes.json', function (err, data) {
         quotes = JSON.parse(data);
         route = getRoute();
@@ -66,7 +65,7 @@
     });
 
     $refresh.addEventListener('click', function (evt) {
-        var classname = $placeholder.getAttribute('class');
+        
         evt.preventDefault();
 
         $$placeholder.animate({
