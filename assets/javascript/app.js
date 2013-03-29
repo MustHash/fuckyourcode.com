@@ -18,7 +18,7 @@
             if (history && typeof history.pushState === 'function') {
                 history.pushState(stateObj, '', index);
             } else {
-                window.location.href = location.href.replace(/(#\!\/)*\d+/, '#!/' + index)
+                window.location.hash = location.hash.replace(/(\!\/)*\d+/, '!/' + index)
             }
         },
 
