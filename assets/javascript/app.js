@@ -15,7 +15,12 @@
 
         setRoute = function (index) {
             var stateObj = { 'index': index };
-            history.pushState(stateObj, '', index);
+
+            if (!history && typeof history.pushState === 'function') {
+                history.pushState(stateObj, '', index);
+            } else {
+                window.location.href = location.href.replace(/(#\!\/)*\d+/, '#!/' + index)
+            }
         },
 
         loadQuotes = function (url, cb) {
