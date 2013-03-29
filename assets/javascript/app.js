@@ -4,11 +4,10 @@
         $refresh = document.querySelector('.refresh'),
         $$placeholder = moofx($placeholder),
         quotes = [],
-        current,
 
         getRoute = function () {
             var matches = window.location.href.match(/[0-9]+/),
-                index = matches[matches.length - 1];
+                index = (matches && matches.length) ? matches[matches.length - 1] : 0;
 
             return parseInt(index, 10);
         },
@@ -70,7 +69,7 @@
     });
 
     $refresh.addEventListener('click', function (evt) {
-        
+
         evt.preventDefault();
 
         $$placeholder.animate({
