@@ -1,9 +1,13 @@
 (function () {
 
-    var $placeholder = document.querySelector('.placeholder'),
+    var $body = document.querySelector('body'),
+        $placeholder = document.querySelector('.placeholder'),
         $refresh = document.querySelector('.refresh'),
         $$placeholder = moofx($placeholder),
         quotes = [],
+
+        // array of theme names, to apply a 'theme-*' class to body
+        themes = ['light', 'dark', 'green', 'magenta'],
 
         getRoute = function () {
             var matches = window.location.href.match(/[0-9]+/),
@@ -38,15 +42,27 @@
 
         setQuote = function (idx) {
             var index = (idx && quotes[idx]) ? idx : Math.floor(Math.random()*quotes.length),
-                node = document.createTextNode(quotes[index]);
+                quote = quotes[index].replace(/(^|\s)(fuck)(\s|$)/ig, '$1<span>$2</span>$3'),
+
+                // calculate the index of the theme randomnly
+                themes_length = themes.length,
+                theme_index = Math.floor(Math.random() * (themes_length)),
+                marginTop,
+                marginTopBefore;
 
             setRoute(index);
-            $placeholder.appendChild(node);
+            $placeholder.innerHTML = quote;
 
-            $$placeholder.style({'opacity':0, 'margin-top': '-20px'});
+            marginTop = - $placeholder.offsetHeight / 2;
+            marginTopBefore = marginTop - 20;
+
+            // add class to body
+            $body.className = 'theme-'+themes[theme_index];
+
+            $$placeholder.style({'opacity':0, 'margin-top': marginTopBefore + 'px'});
             $$placeholder.animate({
                 'opacity': 1,
-                'margin-top': '0px'
+                'margin-top': marginTop + 'px'
             }, {
                 duration : '0.5s',
                 equation: 'ease-in-out'
@@ -70,11 +86,13 @@
 
     $refresh.addEventListener('click', function (evt) {
 
+        var marginTop = - $placeholder.offsetHeight / 2 + 20;
+
         evt.preventDefault();
 
         $$placeholder.animate({
             'opacity': 0,
-            'margin-top': '20px'
+            'margin-top': marginTop + 'px'
         }, {
             duration : '0.5s',
             equation: 'ease-in-out',
