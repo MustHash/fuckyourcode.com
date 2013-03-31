@@ -120,8 +120,23 @@ body.theme-magenta {
     background-color: #E35354;
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 500px) {
     h1 {
       font-size: 2.4em;
+    }
+    h1 span {
+        font-weight: 900;
+    }
+
+    .refresh {
+        bottom: 0;
+        top: auto;
+        left: 0;
+        right: 0;
+        text-align: center;
+        padding: 20px;
+    }
+    .refresh:hover {
+        border-bottom: none;
     }
 }
