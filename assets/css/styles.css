@@ -116,6 +116,14 @@ body.theme-green {
     text-shadow: 3px 3px 0 #FE785B, 5px 5px 0 #333;
 }
 
+body.theme-blue{
+    background-color: #A9D9E4;
+}
+
+.theme-blue h1 span {
+      text-shadow: 3px 3px 0 #71AAB7, 5px 5px 0 #333;
+}
+
 body.theme-magenta {
     background-color: #E35354;
 }

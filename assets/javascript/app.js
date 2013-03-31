@@ -7,7 +7,7 @@
         quotes = [],
 
         // array of theme names, to apply a 'theme-*' class to body
-        themes = ['light', 'dark', 'green', 'magenta'],
+        themes = ['light', 'yellow', 'green',  'blue', 'magenta'],
 
         getRoute = function () {
             var matches = window.location.href.match(/[0-9]+/),
