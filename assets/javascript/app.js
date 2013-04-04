@@ -33,6 +33,8 @@
         },
 
         loadQuotes = function (url, cb) {
+            console.log('Fuck your console, too');
+
             var request = new XMLHttpRequest();
             request.onload = function () {
 
