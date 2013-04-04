@@ -7,15 +7,13 @@
         quotes = [],
 
         // stores previous quotes
-
         seen_quotes = [],
 
         // stores previous loaded theme
-
-        prev_theme_index = undefined,
+        prev_theme_index = null,
 
         // array of theme names, to apply a 'theme-*' class to body
-        themes = ['light', 'yellow', 'green',  'blue', 'magenta'],
+        themes = ['light', 'yellow', 'green', 'blue', 'magenta'],
 
         getRoute = function () {
             var matches = window.location.href.match(/[0-9]+/),
@@ -30,7 +28,7 @@
             if (history && typeof history.pushState === 'function') {
                 history.pushState(stateObj, '', index);
             } else {
-                window.location.hash = location.hash.replace(/(\!\/)*\d+/, '!/' + index)
+                window.location.hash = location.hash.replace(/(\!\/)*\d+/, '!/' + index);
             }
         },
 
@@ -49,7 +47,6 @@
         },
 
         seenQuote = function( index ) {
-
             var array_len = seen_quotes.length,
                 max = 7;
 
@@ -62,16 +59,13 @@
 
         // calculate the index of the theme randomnly
         generateTheme = function() {
-
             var themes_length = themes.length;
 
             return Math.floor(Math.random() * (themes_length));
-
         },
 
         // generate quote index
         generateQuote = function() {
-
             var index;
 
             do {
@@ -79,12 +73,11 @@
             } while( seen_quotes.indexOf(index) != -1 );
 
             return index;
-
         },
 
         setQuote = function (idx) {
             var index = (idx && quotes[idx]) ? idx : generateQuote(),
-                quote = quotes[index].replace(/(^|\s)(fuck)(\s|$)/ig, '$1<span>$2</span>$3'),
+                quote = quotes[index].replace(/(^|\s)(fuck)/ig, '$1<span>$2</span>'),
 
                 theme_index = 0,
                 marginTop,
@@ -92,21 +85,17 @@
 
             // add to seen quote
             seenQuote(index);
-
             setRoute(index);
 
             // dont ever repeat the same theme
             do {
-
                 theme_index = generateTheme();
-
-            } while( theme_index === prev_theme_index );
+            } while (theme_index === prev_theme_index);
 
             prev_theme_index = theme_index;
 
             // add class to body
             $body.className = 'theme-'+themes[theme_index];
-
 
             // print quote into the dom element
             $placeholder.innerHTML = quote;
@@ -130,7 +119,7 @@
 
             for (i; i >= 0; i -= 1) {
                 children[i].parentNode.removeChild(children[i]);
-            };
+            }
         };
 
     loadQuotes('quotes.json', function (err, data) {
@@ -140,7 +129,6 @@
     });
 
     $refresh.addEventListener('click', function (evt) {
-
         var marginTop = - $placeholder.offsetHeight / 2 + 20;
 
         evt.preventDefault();

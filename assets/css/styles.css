@@ -7,7 +7,7 @@
 
 body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
     background-color: #FFB500;
-    font-family: 'Open Sans', sans-serif;
+    font-family: "news-gothic-std", sans-serif;
     font-size: 100%;
     -webkit-transition: background-color 250ms linear;
     -moz-transition: background-color 250ms linear;
