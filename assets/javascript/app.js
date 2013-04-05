@@ -1,5 +1,12 @@
 (function () {
 
+    /*
+    Fuck Douglas Crockford!
+    In a nice way... He's a good guy. I like him!
+
+    but fuck jslint!
+    */
+
     'use strict';
 
     /**
@@ -16,22 +23,22 @@
                 return function (el, evt, fn) {
                     evt = (evt.slice(0, 1).toUpperCase() + evt.substr(1));
                     return el.attachEvent('on' + evt, function () {
-                        fn.apply(el, window.Event)
+                        fn.apply(el, window.Event);
                     });
-                }
+                };
             } else {
                 return function (el, evt, fn) {
                     evt = (evt.slice(0, 1).toUpperCase() + evt.substr(1));
                     el[evt] = fn;
                     return el;
-                }
+                };
             }
         }()),
         proxy : function (fn, context) {
-            var args = [].slice.call(arguments, 2)
+            var args = [].slice.call(arguments, 2);
             return function () {
-                fn.apply(context, args.concat([].slice.call(arguments, 0)))
-            }
+                fn.apply(context, args.concat([].slice.call(arguments, 0)));
+            };
         }
     },
     /**
