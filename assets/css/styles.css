@@ -151,9 +151,14 @@ body.theme-magenta {
         font-weight: 900;
     }
 
+    .ripoff {
+        left: auto;
+        text-align: center;
+        width: 100%;
+    }
+
     .refresh {
-        bottom: 0;
-        top: auto;
+        top: 0;
         left: 0;
         right: 0;
         text-align: center;
