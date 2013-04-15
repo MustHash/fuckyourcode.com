@@ -55,7 +55,7 @@
     "Fuck your *nix system.",
     "Fuck your new pet project.",
     "Fuck your shrtvrbnm.",
-    "Fuck your semicolons.",
+    "Fuck your semicolons;",
     "Fuck your ASI.",
     "Fuck your flow control",
     "Fuck your CPS.",
@@ -64,5 +64,5 @@
     "Fuck your factories.",
     "Fuck your pull request.",
     "� your encoding.",
-    "typeof NaN === 'number', true. Fuck you."
+    "typeof NaN //'number' Fuck you."
 ]
