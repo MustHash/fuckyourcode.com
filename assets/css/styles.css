@@ -2,9 +2,9 @@
 
 * {
     position: relative;
-    -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
@@ -12,10 +12,10 @@ body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
     font-family: "news-gothic-std", sans-serif;
     font-size: 100%;
     -webkit-transition: background-color 250ms linear;
-    -moz-transition: background-color 250ms linear;
-    -o-transition: background-color 250ms linear;
-    -ms-transition: background-color 250ms linear;
-    transition: background-color 250ms linear;
+       -moz-transition: background-color 250ms linear;
+        -ms-transition: background-color 250ms linear;
+         -o-transition: background-color 250ms linear;
+            transition: background-color 250ms linear;
 }
 
 body, html {
@@ -65,13 +65,12 @@ h1 {
     font-weight: 300;
     color: #333;
     -webkit-transition: color 250ms linear;
-    -moz-transition: color 250ms linear;
-    -o-transition: color 250ms linear;
-    -ms-transition: color 250ms linear;
-    transition: color 250ms linear;
+       -moz-transition: color 250ms linear;
+        -ms-transition: color 250ms linear;
+         -o-transition: color 250ms linear;
+            transition: color 250ms linear;
     -ms-word-break: break-all;
-     word-break: break-all;
-     word-break: break-word;
+        word-break: break-all;
 }
 
 h1 span {
@@ -143,28 +142,27 @@ body.theme-magenta {
     background-color: #E35354;
 }
 
+
+/* Social buttons */
+
+.social {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+
 @media only screen and (max-width: 500px) {
     h1 {
       font-size: 2.4em;
     }
-    h1 span {
-        font-weight: 900;
-    }
+        h1 span {
+            font-weight: 900;
+        }
 
     .ripoff {
         left: auto;
         text-align: center;
         width: 100%;
-    }
-
-    .refresh {
-        top: 0;
-        left: 0;
-        right: 0;
-        text-align: center;
-        padding: 20px;
-    }
-    .refresh:hover {
-        border-bottom: none;
     }
 }
