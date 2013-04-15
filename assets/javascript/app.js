@@ -46,7 +46,7 @@
      * @type {Object}
      */
     quotes = {
-        url: 'quotes.json',
+        url: 'quotes.json?v=' + (+new Date()),
         $placeholder: document.querySelector('.placeholder'),
         $$placeholder: moofx(document.querySelector('.placeholder')),
         list: [],
