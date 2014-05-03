@@ -1,0 +1,168 @@
+/* Seriously! Fuck CSS too! */
+
+* {
+    position: relative;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}
+
+body { /* Addresses a small issue in webkit: http://bit.ly/NEdoDq */
+    background-color: #FFB500;
+    font-family: "news-gothic-std", sans-serif;
+    font-size: 100%;
+    -webkit-transition: background-color 250ms linear;
+       -moz-transition: background-color 250ms linear;
+        -ms-transition: background-color 250ms linear;
+         -o-transition: background-color 250ms linear;
+            transition: background-color 250ms linear;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+}
+
+.placeholder {
+    -webkit-backface-visibility: hidden;
+    -webkit-animation-fill-mode: both;
+       -moz-animation-fill-mode: both;
+         -o-animation-fill-mode: both;
+            animation-fill-mode: both;
+
+    text-align: center;
+    padding: 20px;
+    display: block;
+    top: 50%;
+    margin-top: -30px;
+}
+
+.refresh {
+    position: fixed;
+    display: block;
+    top: 20px;
+    left: 20px;
+    text-decoration: none;
+    color: #FFF;
+}
+
+.ripoff {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    color: #fff;
+    text-decoration: none;
+    font-style: italic;
+    font-size: .8em;
+}
+
+.refresh:hover {
+    border-bottom: 2px solid #FFF;
+}
+
+h1 {
+    font-size: 3.2em;
+    font-weight: 300;
+    color: #333;
+    -webkit-transition: color 250ms linear;
+       -moz-transition: color 250ms linear;
+        -ms-transition: color 250ms linear;
+         -o-transition: color 250ms linear;
+            transition: color 250ms linear;
+    -ms-word-break: break-all;
+        word-break: break-all;
+}
+
+h1 span {
+    text-shadow: 3px 3px 0 #DE7C00, 5px 5px 0 #333;
+    /* font-family: 'Playfair Display', serif; */
+    font-weight: 700;
+    font-style: italic;
+    text-transform: lowercase;
+    padding: 0 6px;
+    color: #FFF;
+}
+
+
+/* themes */
+
+body.theme-light {
+    background-color: #FFF;
+}
+
+
+.theme-light h1,
+.theme-light .refresh,
+.theme-light .ripoff {
+    color: #333;
+}
+
+.theme-light h1 span {
+    text-shadow: none;
+    color: #333;
+}
+
+.theme-light a {
+    color: #FFF;
+}
+
+.theme-light {
+    color: #333;
+}
+
+body.theme-green {
+    background-color: #8AC2A0;
+}
+
+.theme-green h1, .theme-magenta h1 {
+    color: #FFF;
+}
+
+.theme-green h1 span {
+    color: #FFF;
+    text-shadow: 3px 3px 0 #599779, 5px 5px 0 #333;
+}
+
+.theme-green, .theme-magenta {
+    color: #FFF;
+}
+.theme-magenta h1 span {
+    text-shadow: 3px 3px 0 #FE785B, 5px 5px 0 #333;
+}
+
+body.theme-blue{
+    background-color: #A9D9E4;
+}
+
+.theme-blue h1 span {
+      text-shadow: 3px 3px 0 #71AAB7, 5px 5px 0 #333;
+}
+
+body.theme-magenta {
+    background-color: #E35354;
+}
+
+
+/* Social buttons */
+
+.social {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+
+@media only screen and (max-width: 500px) {
+    h1 {
+      font-size: 2.4em;
+    }
+        h1 span {
+            font-weight: 900;
+        }
+
+    .ripoff {
+        left: auto;
+        text-align: center;
+        width: 100%;
+    }
+}
