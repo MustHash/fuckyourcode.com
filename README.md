@@ -1,4 +1,4 @@
-[fuckyourcode.com](http://fuckyourcode.com)
+[fuckyourcode.com](https://musthash.github.io/fuckyourcode.com/)
 ================
 
 now with automatic deployments everytime you push to master!
